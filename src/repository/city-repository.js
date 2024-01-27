@@ -17,7 +17,27 @@ class CityRepository {
           id: cityId,
         },
       });
+    } catch (err) {
+      throw { err };
+    }
+  }
+
+  async updateCity(cityId, data) {
+    try {
+      const city = await City.update(data, {
+        where: {
+          id: cityId,
+        },
+      });
       return city;
+    } catch (err) {
+      throw { err };
+    }
+  }
+
+  async getCityById({ cityId }) {
+    try {
+      const city = await City.findByPk(cityId);
     } catch (err) {
       throw { err };
     }
