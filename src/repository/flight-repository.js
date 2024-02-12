@@ -36,6 +36,20 @@ class FlightRepository {
     }
   }
 
+  async updateFlight(flightId, data) {
+    try {
+      const response = await Flights.update(data, {
+        where: {
+          id: flightId,
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log("Something went wrong at repository layer.");
+      throw { error };
+    }
+  }
+
   async getFlightById(flightId) {
     try {
       const flight = await Flights.findByPk(flightId);
